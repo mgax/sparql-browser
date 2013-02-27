@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+  <a href="{{ url_for('.home') }}">&laquo; home</a>
+
+  <h3>SPARQL query</h3>
+
+  <form class="form-query">
+    <textarea name="query"></textarea>
+    <br>
+    <button type="submit">execute</button>
+  </form>
+
+{% endblock %}
