@@ -20,3 +20,8 @@ def objinfo():
         'subject': subject,
         'rows': sparql.query(ENDPOINT, query),
     })
+
+
+@browser.add_app_template_filter
+def is_iri(thing):
+    return isinstance(thing, sparql.IRI)
