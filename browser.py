@@ -24,7 +24,9 @@ def objinfo():
 
 @browser.route('/query')
 def query():
+    query = flask.request.args.get('query')
     return flask.render_template('query.html', **{
+        'query': query,
     })
 
 
