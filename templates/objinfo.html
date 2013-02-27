@@ -23,7 +23,7 @@
 
 
 {% macro rdfterm(term) %}
-  {%- if term|is_iri -%}
+  {%- if term|is_node -%}
     <a href="{{ url_for('.objinfo', s=term) }}" class="term">{{ term }}</a>
   {%- else -%}
     {{ term }}

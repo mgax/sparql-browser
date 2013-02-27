@@ -23,5 +23,5 @@ def objinfo():
 
 
 @browser.add_app_template_filter
-def is_iri(thing):
-    return isinstance(thing, sparql.IRI)
+def is_node(thing):
+    return isinstance(thing, (sparql.IRI, sparql.BlankNode))
