@@ -1,10 +1,6 @@
-SELECT DISTINCT ?p, ?o WHERE {
+SELECT DISTINCT * WHERE {
 
-  ?s ?p ?o .
-
-  FILTER (
-    ?s = {{ subject.n3() }}
-  )
+  {{ subject.n3() }} ?p ?o .
 
 }
 
