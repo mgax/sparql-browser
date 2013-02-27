@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+
+{% block head %}
+  <style>
+    input {
+      width: 500px;
+    }
+  </style>
+{% endblock %}
+
+
+{% block content %}
+
+  <h1>Do some queries!</h1>
+
+  <form action="{{ url_for('.objinfo') }}">
+    <h3>Object info</h3>
+    <label>
+      URI:
+      <input name="s" autofocus>
+    </label>
+    <button type="submit">go</button>
+  </form>
+
+{% endblock %}
