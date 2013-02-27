@@ -22,16 +22,8 @@
 {% endblock %}
 
 
-{% macro rdfterm(term) %}
-  {%- if term|is_node -%}
-    <a href="{{ url_for('.objinfo', s=term) }}" class="term">{{ term }}</a>
-  {%- else -%}
-    {{ term }}
-  {%- endif -%}
-{% endmacro %}
-
-
 {% block content %}
+  {%- from 'bits.html' import rdfterm %}
 
   <a href="{{ url_for('.home') }}">&laquo; home</a>
 
