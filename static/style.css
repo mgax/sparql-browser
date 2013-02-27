@@ -19,9 +19,9 @@ a.term:hover {
 
 .form-query textarea {
     width: 80%;
-    height: 200px;
+    height: 350px;
     font-family: Menlo, fixed;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .form-query button {

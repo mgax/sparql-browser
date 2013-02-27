@@ -27,6 +27,7 @@ def query():
     query = flask.request.args.get('query')
     return flask.render_template('query.html', **{
         'query': query,
+        'rows': sparql.query(ENDPOINT, query),
     })
 
 
