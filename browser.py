@@ -22,6 +22,15 @@ def objinfo():
     })
 
 
+@browser.route('/query')
+def query():
+    query = flask.request.args.get('query')
+    return flask.render_template('query.html', **{
+        'query': query,
+        'rows': sparql.query(ENDPOINT, query),
+    })
+
+
 @browser.add_app_template_filter
 def is_node(thing):
     return isinstance(thing, (sparql.IRI, sparql.BlankNode))

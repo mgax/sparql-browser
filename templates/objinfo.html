@@ -1,43 +1,14 @@
 {% extends 'layout.html' %}
 
 
-{% block head %}
-  <style>
-    table {
-      border-collapse: collapse;
-    }
-    table th,
-    table td {
-      border: 1px solid #aaa;
-      padding: 2px 10px;
-    }
-    a.term {
-      color: #55b;
-      text-decoration: none;
-    }
-    a.term:hover {
-      text-decoration: underline;
-    }
-  </style>
-{% endblock %}
-
-
-{% macro rdfterm(term) %}
-  {%- if term|is_node -%}
-    <a href="{{ url_for('.objinfo', s=term) }}" class="term">{{ term }}</a>
-  {%- else -%}
-    {{ term }}
-  {%- endif -%}
-{% endmacro %}
-
-
 {% block content %}
+  {%- from 'bits.html' import rdfterm %}
 
   <a href="{{ url_for('.home') }}">&laquo; home</a>
 
   <h3>{{ subject }}</h3>
 
-  <table>
+  <table class="table-rdf">
 
     <thead>
       <th>predicate</th>

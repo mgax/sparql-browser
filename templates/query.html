@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+  {%- from 'bits.html' import rdfterm %}
+
+  <a href="{{ url_for('.home') }}">&laquo; home</a>
+
+  <h3>SPARQL query</h3>
+
+  <form class="form-query">
+    <textarea name="query">{{ query or '' }}</textarea>
+    <br>
+    <button type="submit">execute</button>
+  </form>
+
+  {% if rows %}
+  <table class="table-rdf">
+
+    <thead>
+      {% for var in rows.variables %}
+        <th>{{ var }}</th>
+      {% endfor %}
+    </thead>
+
+    <tbody>
+    {% for row in rows %}
+      <tr>
+        {% for t in row %}
+          <td>{{ rdfterm(t) }}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+
+  </table>
+  {% endif %}
+
+{% endblock %}
