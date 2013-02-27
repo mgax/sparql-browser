@@ -1,0 +1,4 @@
+Werkzeug==0.8.3
+Jinja2==2.6
+Flask==0.9
+Flask-Script==0.5.3
