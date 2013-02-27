@@ -40,7 +40,7 @@
     <tbody>
     {% for p, o in rows %}
       <tr>
-        <td>{{ p }}</td>
+        <td>{{ rdfterm(p) }}</td>
         <td>{{ rdfterm(o) }}</td>
       </tr>
     {% endfor %}
