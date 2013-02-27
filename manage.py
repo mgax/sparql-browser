@@ -5,12 +5,9 @@ from flask.ext.script import Manager
 
 
 def create_app():
+    import browser
     app = flask.Flask(__name__)
-
-    @app.route('/')
-    def home():
-        return 'hi'
-
+    app.register_blueprint(browser.browser)
     return app
 
 
