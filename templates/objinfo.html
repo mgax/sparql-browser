@@ -15,6 +15,15 @@
 {% endblock %}
 
 
+{% macro rdfterm(term) %}
+  {%- if term|is_iri -%}
+    <a href="{{ url_for('.objinfo', s=term) }}">{{ term }}</a>
+  {%- else -%}
+    {{ term }}
+  {%- endif -%}
+{% endmacro %}
+
+
 {% block content %}
 
   <a href="{{ url_for('.home') }}">&laquo; home</a>
@@ -32,13 +41,7 @@
     {% for p, o in rows %}
       <tr>
         <td>{{ p }}</td>
-        <td>
-          {%- if o|is_iri -%}
-            <a href="{{ url_for('.objinfo', s=o) }}">{{ o }}</a>
-          {%- else -%}
-            {{ o }}
-          {%- endif -%}
-        </td>
+        <td>{{ rdfterm(o) }}</td>
       </tr>
     {% endfor %}
     </tbody>
