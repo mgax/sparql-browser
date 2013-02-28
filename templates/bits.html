@@ -2,6 +2,6 @@
   {%- if term|is_node -%}
     <a href="{{ url_for('.objinfo', s=term) }}" class="term">{{ term }}</a>
   {%- else -%}
-    {{ term }}
+    <span title="type: {{ term.datatype }}">{{ term }}</span>
   {%- endif -%}
 {% endmacro %}
