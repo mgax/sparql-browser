@@ -1,4 +1,5 @@
 import os
+import urllib2
 import flask
 import sparql
 
@@ -25,9 +26,24 @@ def objinfo():
 @browser.route('/query')
 def query():
     query = flask.request.args.get('query')
+    rows = None
+    error = None
+
+    if query:
+        try:
+            rows = sparql.query(ENDPOINT, query)
+
+        except urllib2.HTTPError, e:
+            if e.code == 400:
+                error = e.fp.read()
+
+            else:
+                raise
+
     return flask.render_template('query.html', **{
         'query': query,
-        'rows': sparql.query(ENDPOINT, query),
+        'rows': rows,
+        'error': error,
     })
 
 

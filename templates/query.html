@@ -14,7 +14,12 @@
     <button type="submit">execute</button>
   </form>
 
-  {% if rows %}
+  {% if error %}
+
+  <p class="sparql-error">{{ error }}</p>
+
+  {% elif rows %}
+
   <table class="table-rdf">
 
     <thead>
@@ -34,6 +39,7 @@
     </tbody>
 
   </table>
+
   {% endif %}
 
 {% endblock %}
