@@ -34,7 +34,7 @@ def query():
             rows = sparql.query(ENDPOINT, query)
 
         except urllib2.HTTPError, e:
-            if e.code == 400:
+            if 400 <= e.code < 600:
                 error = e.fp.read()
 
             else:
