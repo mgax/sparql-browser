@@ -2,7 +2,6 @@
 
 
 {% block content %}
-  {%- from 'bits.html' import rdfterm %}
 
   <a href="{{ url_for('.home') }}">&laquo; home</a>
 
@@ -15,5 +14,12 @@
     <input name="o" value="{{ o or '' }}" placeholder="object">
     <button type="submit" class="btn">filter</button>
   </form>
+
+  {% if error %}
+    <p class="sparql-error">{{ error }}</p>
+  {% elif rows %}
+    {%- from 'bits.html' import results_tabe %}
+    {{ results_tabe(rows) }}
+  {% endif %}
 
 {% endblock %}

@@ -1,0 +1,12 @@
+SELECT DISTINCT * WHERE {
+
+  ?s ?p ?o .
+
+  {%- set (s, p, o) = spo %}
+  {% if s %}FILTER(?s = <{{ s }}>){% endif %}
+  {% if p %}FILTER(?p = <{{ p }}>){% endif %}
+  {% if o %}FILTER(?o = <{{ o }}>){% endif %}
+
+}
+
+LIMIT 1000
