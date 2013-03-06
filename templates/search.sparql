@@ -1,9 +1,9 @@
 {%- macro filter(name, value, regex) -%}
   {%- if value -%}
     {%- if regex -%}
-      FILTER(regex(str(?{{ name }}), "{{ value }}"))
+      FILTER(regex(str(?{{ name }}), {{ sparql.Literal(value).n3() }}))
     {%- else -%}
-      FILTER(?{{ name }} = <{{ value }}>)
+      FILTER(?{{ name }} = {{ sparql.IRI(value).n3() }})
     {%- endif -%}
   {%- endif -%}
 {%- endmacro -%}

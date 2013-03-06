@@ -55,7 +55,7 @@ def query():
 def search():
     args = {k: flask.request.args.get(k) or None for k in
             ['s', 'p', 'o', 's_regex', 'p_regex', 'o_regex']}
-    query = flask.render_template('search.sparql', **args)
+    query = flask.render_template('search.sparql', sparql=sparql, **args)
     (rows, error) = do_query(query)
     options = {
         'rows': rows,
