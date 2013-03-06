@@ -2,7 +2,6 @@
 
 
 {% block content %}
-  {%- from 'bits.html' import rdfterm %}
 
   <a href="{{ url_for('.home') }}">&laquo; home</a>
 
@@ -15,31 +14,10 @@
   </form>
 
   {% if error %}
-
-  <p class="sparql-error">{{ error }}</p>
-
+    <p class="sparql-error">{{ error }}</p>
   {% elif rows %}
-
-  <table class="table-rdf">
-
-    <thead>
-      {% for var in rows.variables %}
-        <th>{{ var }}</th>
-      {% endfor %}
-    </thead>
-
-    <tbody>
-    {% for row in rows %}
-      <tr>
-        {% for t in row %}
-          <td>{{ rdfterm(t) }}</td>
-        {% endfor %}
-      </tr>
-    {% endfor %}
-    </tbody>
-
-  </table>
-
+    {%- from 'bits.html' import results_tabe %}
+    {{ results_tabe(rows) }}
   {% endif %}
 
 {% endblock %}
