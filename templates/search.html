@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+
+{% block head %}
+  <style>
+    .form-search {
+      margin: 10px;
+    }
+    .form-search label {
+      display: inline-block;
+      width: 60px;
+    }
+    .form-search input {
+      width: 500px;
+    }
+  </style>
+{% endblock %}
+
+
+{% block content %}
+
+  <a href="{{ url_for('.home') }}">&laquo; home</a>
+
+  <h3>Search triples</h3>
+
+  <form class="form-search">
+    {%- set (s, p, o) = spo %}
+    <div>
+      <label for="input-s">subject</label>
+      <input id="input-s" name="s" value="{{ s or '' }}" placeholder="uri">
+    </div>
+    <div>
+      <label for="input-p">predicate</label>
+      <input id="input-p" name="p" value="{{ p or '' }}" placeholder="uri">
+    </div>
+    <div>
+      <label for="input-o">object</label>
+      <input id="input-o" name="o" value="{{ o or '' }}" placeholder="uri">
+    </div>
+    <button type="submit" class="btn">search</button>
+  </form>
+
+  {% if error %}
+    <p class="sparql-error">{{ error }}</p>
+  {% elif rows %}
+    {%- from 'bits.html' import results_tabe %}
+    {{ results_tabe(rows) }}
+  {% endif %}
+
+{% endblock %}
