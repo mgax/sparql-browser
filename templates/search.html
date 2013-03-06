@@ -6,11 +6,11 @@
     .form-search {
       margin: 10px;
     }
-    .form-search label {
+    .form-search .label-field {
       display: inline-block;
       width: 60px;
     }
-    .form-search input {
+    .form-search .input-field {
       width: 500px;
     }
   </style>
@@ -26,18 +26,31 @@
   <form class="form-search">
 
     <div>
-      <label for="input-s">subject</label>
-      <input id="input-s" name="s" value="{{ s or '' }}" placeholder="uri">
+      <label class="label-field" for="input-s">subject</label>
+      <input class="input-field" id="input-s" name="s"
+             value="{{ s or '' }}" placeholder="uri">
+      <label><input type="checkbox" name="s_regex"
+              {%- if s_regex %} checked{% endif %}>regex</label>
     </div>
+
     <div>
-      <label for="input-p">predicate</label>
-      <input id="input-p" name="p" value="{{ p or '' }}" placeholder="uri">
+      <label class="label-field" for="input-p">predicate</label>
+      <input class="input-field" id="input-p" name="p"
+             value="{{ p or '' }}" placeholder="uri">
+      <label><input type="checkbox" name="p_regex"
+              {%- if p_regex %} checked{% endif %}>regex</label>
     </div>
+
     <div>
-      <label for="input-o">object</label>
-      <input id="input-o" name="o" value="{{ o or '' }}" placeholder="uri">
+      <label class="label-field" for="input-o">object</label>
+      <input class="input-field" id="input-o" name="o"
+             value="{{ o or '' }}" placeholder="uri">
+      <label><input type="checkbox" name="o_regex"
+              {%- if o_regex %} checked{% endif %}>regex</label>
     </div>
+
     <button type="submit" class="btn">search</button>
+
   </form>
 
   {% if error %}
