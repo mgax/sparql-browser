@@ -53,16 +53,15 @@ def query():
 
 @browser.route('/search')
 def search():
-    spo = (flask.request.args.get('s') or None,
-           flask.request.args.get('p') or None,
-           flask.request.args.get('o') or None)
-    query = flask.render_template('search.sparql', spo=spo)
+    args = {k: flask.request.args.get(k) or None for k in ['s', 'p', 'o']}
+    query = flask.render_template('search.sparql', **args)
     (rows, error) = do_query(query)
-    return flask.render_template('search.html', **{
-        'spo': spo,
+    options = {
         'rows': rows,
         'error': error,
-    })
+    }
+    options.update(args)
+    return flask.render_template('search.html', **options)
 
 
 @browser.add_app_template_filter
