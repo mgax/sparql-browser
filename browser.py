@@ -23,22 +23,26 @@ def objinfo():
     })
 
 
+def do_query(query):
+    rows = error = None
+    try:
+        rows = sparql.query(ENDPOINT, query)
+    except urllib2.HTTPError, e:
+        if 400 <= e.code < 600:
+            error = e.fp.read()
+        else:
+            raise
+    return rows, error
+
+
 @browser.route('/query')
 def query():
     query = flask.request.args.get('query')
-    rows = None
-    error = None
 
     if query:
-        try:
-            rows = sparql.query(ENDPOINT, query)
-
-        except urllib2.HTTPError, e:
-            if 400 <= e.code < 600:
-                error = e.fp.read()
-
-            else:
-                raise
+        (rows, error) = do_query(query)
+    else:
+        rows = error = None
 
     return flask.render_template('query.html', **{
         'query': query,

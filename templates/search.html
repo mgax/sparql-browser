@@ -10,9 +10,9 @@
 
   <form class="form-filter">
     {%- set (s, p, o) = spo %}
-    <input name="s" value="{{ s }}" placeholder="subject">
-    <input name="p" value="{{ p }}" placeholder="predicate">
-    <input name="o" value="{{ o }}" placeholder="object">
+    <input name="s" value="{{ s or '' }}" placeholder="subject">
+    <input name="p" value="{{ p or '' }}" placeholder="predicate">
+    <input name="o" value="{{ o or '' }}" placeholder="object">
     <button type="submit" class="btn">filter</button>
   </form>
 
