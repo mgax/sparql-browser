@@ -1,12 +1,22 @@
+{%- macro filter(name, value, regex) -%}
+  {%- if value -%}
+    {%- if regex -%}
+      FILTER(regex(str(?{{ name }}), {{ sparql.Literal(value).n3() }}))
+    {%- else -%}
+      FILTER(?{{ name }} = {{ sparql.IRI(value).n3() }})
+    {%- endif -%}
+  {%- endif -%}
+{%- endmacro -%}
+
+
 SELECT DISTINCT * WHERE {
 
   ?s ?p ?o .
 
-  {%- set (s, p, o) = spo %}
-  {% if s %}FILTER(?s = <{{ s }}>){% endif %}
-  {% if p %}FILTER(?p = <{{ p }}>){% endif %}
-  {% if o %}FILTER(?o = <{{ o }}>){% endif %}
+  {{ filter('s', s, s_regex) }}
+  {{ filter('p', p, p_regex) }}
+  {{ filter('o', o, o_regex) }}
 
 }
 
-LIMIT 1000
+LIMIT 100
