@@ -1,10 +1,21 @@
+{%- macro filter(name, value, regex) -%}
+  {%- if value -%}
+    {%- if regex -%}
+      FILTER(regex(str(?{{ name }}), "{{ value }}"))
+    {%- else -%}
+      FILTER(?{{ name }} = <{{ value }}>)
+    {%- endif -%}
+  {%- endif -%}
+{%- endmacro -%}
+
+
 SELECT DISTINCT * WHERE {
 
   ?s ?p ?o .
 
-  {% if s %}FILTER(?s = <{{ s }}>){% endif %}
-  {% if p %}FILTER(?p = <{{ p }}>){% endif %}
-  {% if o %}FILTER(?o = <{{ o }}>){% endif %}
+  {{ filter('s', s, s_regex) }}
+  {{ filter('p', p, p_regex) }}
+  {{ filter('o', o, o_regex) }}
 
 }
 
