@@ -31,6 +31,8 @@ def create_app():
 
 
 manager = Manager(create_app)
+if not (os.environ.get('RELOADER') == 'on'):
+    manager._commands['runserver'].use_reloader = False
 
 
 if __name__ == '__main__':
