@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+  {%- from 'bits.html' import rdfterm %}
+
+  <a href="{{ url_for('.home') }}">&laquo; home</a>
+
+  <h3>Search triples</h3>
+
+  <form class="form-filter">
+    {%- set (s, p, o) = spo %}
+    <input name="s" value="{{ s }}" placeholder="subject">
+    <input name="p" value="{{ p }}" placeholder="predicate">
+    <input name="o" value="{{ o }}" placeholder="object">
+    <button type="submit" class="btn">filter</button>
+  </form>
+
+{% endblock %}

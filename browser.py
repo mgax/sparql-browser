@@ -47,6 +47,16 @@ def query():
     })
 
 
+@browser.route('/search')
+def search():
+    spo = (flask.request.args.get('s') or None,
+           flask.request.args.get('p') or None,
+           flask.request.args.get('o') or None)
+    return flask.render_template('search.html', **{
+        'spo': spo,
+    })
+
+
 @browser.add_app_template_filter
 def is_node(thing):
     return isinstance(thing, (sparql.IRI, sparql.BlankNode))
